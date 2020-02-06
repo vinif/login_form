@@ -42,3 +42,21 @@ class LoginFormDialog(QtWidgets.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
+        self.loginButtonBox = self.findChild(QtWidgets.QDialogButtonBox, "loginButtonBox")
+        self.loginButtonBox.clicked.connect(self.on_dialog_reset)
+        self.userNameEdit = self.findChild(QtWidgets.QLineEdit, "userNameEdit")
+        self.passwordEdit = self.findChild(QtWidgets.QLineEdit, "passwordEdit")
+        
+
+    def on_dialog_reset(self, clickBtn):
+        """ Callback for resetting the dialog """
+        
+        if clickBtn and clickBtn.text() == "Reset":
+            self.userNameEdit.clear()
+            self.passwordEdit.clear()
+
+
+
+    
+        
+

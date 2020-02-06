@@ -71,6 +71,8 @@ class LoginForm:
         # Must be set in initGui() to survive plugin reloads
         self.first_start = None
 
+
+
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
         """Get the translation for a string using Qt translation API.
@@ -189,14 +191,13 @@ class LoginForm:
 
         # Create the dialog with elements (after translation) and keep reference
         # Only create GUI ONCE in callback, so that it will only load when the plugin is started
-        if self.first_start == True:
+        if self.first_start:
             self.first_start = False
             self.dlg = LoginFormDialog()
-
-
+            
 
         # show the dialog
-        self.dlg.show()
+        self.dlg.show()        
         # Run the dialog event loop
         result = self.dlg.exec_()
         # See if OK was pressed
@@ -205,11 +206,13 @@ class LoginForm:
             password = self.dlg.passwordEdit.text()
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
-            if result == 1 and   userName and  password:
-                if userName == "vini" and password == "vini":
-                    self.iface.messageBar().pushMessage("Login Success uname:" + userName + " and pwd:" + password, "The plugin is working as it should", level=0, duration=3)    
+            if result == 1:
+                if userName and  password:
+                    if userName == "vini" and password == "vini":
+                        self.iface.messageBar().pushMessage("Login Success uname:" + userName + " and pwd:" + password, "The plugin is working as it should", level=0, duration=3)    
+                    else:
+                        self.iface.messageBar().pushMessage("Login Failed", "Invalid Username or Password", level=1, duration=3)
                 else:
-                    self.iface.messageBar().pushMessage("Login Failed", "Invalid Username or Password", level=1, duration=3)    
+                    self.iface.messageBar().pushMessage("Login Failed", "You have not specified user name or password", level=1, duration=3)   
             else:
-                self.iface.messageBar().pushMessage("Login Failed", "You have not specified user name or password", level=1, duration=3)
-            
+                self.iface.messageBar().pushMessage("Login Form Failed", "This result value:" + result + " is not expected", level=1, duration=3)

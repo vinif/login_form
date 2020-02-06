@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>357</width>
     <height>300</height>
    </rect>
   </property>
@@ -48,6 +48,9 @@
      <height>20</height>
     </rect>
    </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
   </widget>
   <widget class="QLabel" name="userNameLbl">
    <property name="geometry">
@@ -85,12 +88,12 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>180</y>
+     <x>210</x>
+     <y>195</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>199</x>
+     <y>149</y>
     </hint>
    </hints>
   </connection>
@@ -101,12 +104,12 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>180</y>
+     <x>210</x>
+     <y>195</y>
     </hint>
     <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
+     <x>199</x>
+     <y>149</y>
     </hint>
    </hints>
   </connection>
