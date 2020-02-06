@@ -201,7 +201,15 @@ class LoginForm:
         result = self.dlg.exec_()
         # See if OK was pressed
         if result:
+            userName = self.dlg.userNameEdit.text()
+            password = self.dlg.passwordEdit.text()
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
-            self.iface.messageBar().pushMessage("Ooops", "The plugin is not working as it should", level=Qgis.Critical, duration=3)
+            if result == 1 and   userName and  password:
+                if userName == "vini" and password == "vini":
+                    self.iface.messageBar().pushMessage("Login Success uname:" + userName + " and pwd:" + password, "The plugin is working as it should", level=0, duration=3)    
+                else:
+                    self.iface.messageBar().pushMessage("Login Failed", "Invalid Username or Password", level=1, duration=3)    
+            else:
+                self.iface.messageBar().pushMessage("Login Failed", "You have not specified user name or password", level=1, duration=3)
             
